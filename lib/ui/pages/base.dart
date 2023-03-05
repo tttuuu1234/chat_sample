@@ -1,4 +1,8 @@
 import 'package:chat_sample/ui/notifier/bottom_nav_bar.dart';
+import 'package:chat_sample/ui/pages/home.dart';
+import 'package:chat_sample/ui/pages/profile.dart';
+import 'package:chat_sample/ui/pages/talk_list.dart';
+import 'package:chat_sample/ui/pages/user_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -7,12 +11,22 @@ class BasePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final pagesList = [
+      {'title': 'ホーム', 'body': const HomePage()},
+      {'title': '探す', 'body': const UserSearchPage()},
+      {'title': 'トーク', 'body': const TalkListPage()},
+      {'title': 'プロフ', 'body': const ProfilePage()},
+    ];
     final state = ref.watch(bottomNavBarProvider);
     final notifier = ref.watch(bottomNavBarProvider.notifier);
 
     return Scaffold(
-      appBar: AppBar(),
-      body: Column(),
+      appBar: AppBar(
+        title: Text(
+          pagesList[state]['title'].toString(),
+        ),
+      ),
+      body: pagesList[state]['body'] as Widget,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: state,
         onTap: (value) {
