@@ -16,7 +16,5 @@ class BottomNavBarNotifier extends StateNotifier<BottomNavBarState> {
 
   void setCurrentItem(BottomNavBarItem item) {
     state = state.copyWith(currentItem: item);
-    print('選択！！！');
-    print(state.currentItem);
   }
 }

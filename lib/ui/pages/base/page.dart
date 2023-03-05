@@ -5,18 +5,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../notifier/bottom_nav_bar/notifier.dart';
 
-final _navigatoryKeys = {
-  BottomNavBarItem.home: GlobalKey<NavigatorState>(),
-  BottomNavBarItem.userSearch: GlobalKey<NavigatorState>(),
-  BottomNavBarItem.talkList: GlobalKey<NavigatorState>(),
-  BottomNavBarItem.profile: GlobalKey<NavigatorState>(),
-};
-
 class BasePage extends ConsumerWidget {
   const BasePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final navigatorKeys = ref.read(navigatorKeysProvider);
     final state = ref.watch(bottomNavBarProvider);
     final notifier = ref.watch(bottomNavBarProvider.notifier);
 
@@ -26,7 +20,7 @@ class BasePage extends ConsumerWidget {
           return Offstage(
             offstage: state.currentItem != item,
             child: Navigator(
-              key: _navigatoryKeys[item],
+              key: navigatorKeys[item],
               onGenerateRoute: (settings) {
                 return MaterialPageRoute(
                   builder: (context) {
@@ -42,7 +36,7 @@ class BasePage extends ConsumerWidget {
         currentIndex: state.currentIndex,
         onTap: (index) {
           if (index == state.currentIndex) {
-            _navigatoryKeys[state.currentItem]
+            navigatorKeys[state.currentItem]
                 ?.currentState
                 ?.popUntil((route) => route.isFirst);
             return;
