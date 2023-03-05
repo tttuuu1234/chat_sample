@@ -1,4 +1,4 @@
-import 'package:chat_sample/ui/pages/root.dart';
+import 'package:chat_sample/ui/pages/root/page.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {

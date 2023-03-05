@@ -1,8 +1,10 @@
+import 'package:chat_sample/ui/services/navigator.dart';
 import 'package:chat_sample/ui/styles/color.dart';
 import 'package:chat_sample/ui/styles/margin.dart';
 import 'package:chat_sample/ui/styles/padding.dart';
 
-import '../../importer.dart';
+import '../../../importer.dart';
+import '../profile_edit/page.dart';
 
 class ProfilePage extends ConsumerWidget {
   const ProfilePage({super.key});
@@ -39,7 +41,14 @@ class ProfilePage extends ConsumerWidget {
                       ),
                       const Spacer(),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          await NavigatorService.push(
+                            context: context,
+                            // rootNavigator: true,
+                            page: const ProfileEditPage(),
+                            fullscreenDialog: true,
+                          );
+                        },
                         child: Row(
                           children: const [
                             Icon(Icons.edit),

@@ -1,6 +1,6 @@
 
 
-import '../../importer.dart';
+import '../../../importer.dart';
 
 class TalkListPage extends ConsumerWidget {
   const TalkListPage({super.key});

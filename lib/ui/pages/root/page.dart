@@ -1,4 +1,4 @@
-import 'package:chat_sample/ui/pages/base.dart';
+import 'package:chat_sample/ui/pages/base/page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

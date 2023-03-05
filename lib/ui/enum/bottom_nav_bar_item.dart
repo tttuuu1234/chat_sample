@@ -1,8 +1,9 @@
-import 'package:chat_sample/ui/pages/home.dart';
-import 'package:chat_sample/ui/pages/profile.dart';
-import 'package:chat_sample/ui/pages/talk_list.dart';
-import 'package:chat_sample/ui/pages/user_search.dart';
 import 'package:flutter/material.dart';
+
+import '../pages/home/page.dart';
+import '../pages/profile/page.dart';
+import '../pages/talk_list/page.dart';
+import '../pages/user_search/page.dart';
 
 enum BottomNavBarItem {
   home(
