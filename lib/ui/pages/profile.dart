@@ -1,5 +1,3 @@
-
-
 import '../../importer.dart';
 
 class ProfilePage extends ConsumerWidget {
@@ -7,6 +5,22 @@ class ProfilePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('プロフィール'),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Text('もふもふマン'),
+                Icon(Icons.dangerous),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

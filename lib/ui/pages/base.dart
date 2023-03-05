@@ -1,8 +1,5 @@
+import 'package:chat_sample/ui/enum/bottom_nav_bar_item.dart';
 import 'package:chat_sample/ui/notifier/bottom_nav_bar.dart';
-import 'package:chat_sample/ui/pages/home.dart';
-import 'package:chat_sample/ui/pages/profile.dart';
-import 'package:chat_sample/ui/pages/talk_list.dart';
-import 'package:chat_sample/ui/pages/user_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,54 +8,57 @@ class BasePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final pagesList = [
-      {'title': 'ホーム', 'body': const HomePage()},
-      {'title': '探す', 'body': const UserSearchPage()},
-      {'title': 'トーク', 'body': const TalkListPage()},
-      {'title': 'プロフ', 'body': const ProfilePage()},
-    ];
     final state = ref.watch(bottomNavBarProvider);
     final notifier = ref.watch(bottomNavBarProvider.notifier);
+    final navigatoryKeys = {
+      BottomNavBarItem.home: GlobalKey<NavigatorState>(),
+      BottomNavBarItem.userSearch: GlobalKey<NavigatorState>(),
+      BottomNavBarItem.talkList: GlobalKey<NavigatorState>(),
+      BottomNavBarItem.profile: GlobalKey<NavigatorState>(),
+    };
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          pagesList[state]['title'].toString(),
-        ),
+      body: Stack(
+        children: BottomNavBarItem.values.map((item) {
+          return Offstage(
+            offstage: item.index != state,
+            child: Navigator(
+              key: navigatoryKeys[item],
+              onGenerateRoute: (settings) {
+                return MaterialPageRoute(
+                  builder: (context) {
+                    return item.body;
+                  },
+                );
+              },
+            ),
+          );
+        }).toList(),
       ),
-      body: pagesList[state]['body'] as Widget,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: state,
-        onTap: (value) {
-          notifier.setCurrentIndex(value);
+        onTap: (index) {
+          final currentBottomNavBarItem = BottomNavBarItem.values[index];
+          if (state == currentBottomNavBarItem.index) {
+            navigatoryKeys[currentBottomNavBarItem]
+                ?.currentState
+                ?.popUntil((route) => route.isFirst);
+            return;
+          }
+
+          notifier.setCurrentIndex(index);
         },
         type: BottomNavigationBarType.fixed,
         selectedFontSize: 12,
         unselectedFontSize: 12,
         selectedItemColor: Colors.greenAccent,
         unselectedItemColor: Colors.grey,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            activeIcon: Icon(Icons.home),
-            label: 'ホーム',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            activeIcon: Icon(Icons.search),
-            label: '探す',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            activeIcon: Icon(Icons.chat),
-            label: 'トーク',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_box),
-            activeIcon: Icon(Icons.account_box),
-            label: 'プロフ',
-          ),
-        ],
+        items: BottomNavBarItem.values.map((e) {
+          return BottomNavigationBarItem(
+            icon: Icon(e.iconData),
+            label: e.label,
+          );
+        }).toList(),
       ),
     );
   }
