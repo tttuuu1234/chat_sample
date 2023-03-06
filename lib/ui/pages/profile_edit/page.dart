@@ -1,10 +1,13 @@
 import 'package:chat_sample/ui/components/basic_layout/widget.dart';
+import 'package:chat_sample/ui/enum/gender.dart';
 import 'package:chat_sample/ui/styles/color.dart';
 import 'package:chat_sample/ui/styles/margin.dart';
 import 'package:chat_sample/ui/styles/padding.dart';
+import 'package:chat_sample/ui/validator/validator.dart';
 import 'package:dotted_border/dotted_border.dart';
 
 import '../../../importer.dart';
+import '../../components/gender_select_filed/widget.dart';
 
 class ProfileEditPage extends ConsumerWidget {
   const ProfileEditPage({super.key});
@@ -18,7 +21,7 @@ class ProfileEditPage extends ConsumerWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Text(
+          child: const Text(
             '保存',
             style: TextStyle(color: AppColor.white),
           ),
@@ -59,8 +62,18 @@ class ProfileEditPage extends ConsumerWidget {
                 ],
               ),
             ),
-            InputFiledBaseLayout(label: '名前', widget: TextFormField()),
-            InputFiledBaseLayout(label: '性別', widget: TextFormField()),
+            InputFiledBaseLayout(
+              label: '名前',
+              widget: ValidateInputFiled(
+                controller: TextEditingController(),
+              ),
+            ),
+            const InputFiledBaseLayout(
+              label: '性別',
+              widget: GenderSelectFiled(
+                selectedGender: Gender.noSelect,
+              ),
+            ),
             InputFiledBaseLayout(label: '年齢', widget: TextFormField()),
             InputFiledBaseLayout(label: '場所', widget: TextFormField()),
             InputFiledBaseLayout(label: '自己紹介', widget: TextFormField()),
@@ -90,13 +103,59 @@ class InputFiledBaseLayout extends StatelessWidget {
         Padding(
           padding: AppPadding.smallHorizontal,
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(label),
-              Expanded(child: widget),
+              Expanded(
+                child: Text(label),
+              ),
+              Expanded(flex: 3, child: widget)
             ],
           ),
         ),
       ],
+    );
+  }
+}
+
+class ValidateInputFiled extends StatelessWidget {
+  const ValidateInputFiled({
+    Key? key,
+    required this.controller,
+    this.validateRules,
+  }) : super(key: key);
+
+  final TextEditingController controller;
+  final List<Validator>? validateRules;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: controller,
+      cursorColor: AppColor.green,
+      decoration: const InputDecoration(
+        enabledBorder: InputBorder.none,
+        focusedBorder: InputBorder.none,
+        errorBorder: InputBorder.none,
+        focusedErrorBorder: InputBorder.none,
+        disabledBorder: InputBorder.none,
+      ),
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      validator: (value) {
+        String? errorMessage;
+        final rules = validateRules;
+        if (rules == null) {
+          return null;
+        }
+
+        for (final rule in rules) {
+          if (rule.validate(value)) {
+            errorMessage = rule.getMessage();
+            break;
+          }
+        }
+
+        return errorMessage;
+      },
     );
   }
 }

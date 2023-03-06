@@ -23,10 +23,10 @@ class App extends ConsumerWidget {
           unselectedItemColor: AppColor.grey,
         ),
         textTheme: const TextTheme().copyWith(
-          bodySmall: TextStyle(fontSize: AppSize.xSmall),
-          bodyMedium: TextStyle(fontSize: AppSize.small),
-          bodyLarge: TextStyle(fontSize: AppSize.miduam),
-        ),
+            // bodySmall: TextStyle(fontSize: AppSize.xSmall),
+            // bodyMedium: TextStyle(fontSize: AppSize.small),
+            // bodyLarge: TextStyle(fontSize: AppSize.miduam),
+            ),
         buttonTheme: const ButtonThemeData().copyWith(
           splashColor: Colors.amber,
           highlightColor: Colors.black,
@@ -36,6 +36,7 @@ class App extends ConsumerWidget {
             backgroundColor: Colors.amber,
           ),
         ),
+        scaffoldBackgroundColor: AppColor.white,
       ),
       home: const RootPage(),
     );
