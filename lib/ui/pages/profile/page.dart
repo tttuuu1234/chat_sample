@@ -44,7 +44,7 @@ class ProfilePage extends ConsumerWidget {
                         onPressed: () async {
                           await NavigatorService.push(
                             context: context,
-                            // rootNavigator: true,
+                            rootNavigator: true,
                             page: const ProfileEditPage(),
                             fullscreenDialog: true,
                           );

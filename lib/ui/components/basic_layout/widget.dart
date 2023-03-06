@@ -23,7 +23,7 @@ class BasicLayout extends StatelessWidget {
               actions: actions,
             )
           : null,
-      body: body,
+      body: SafeArea(child: body),
     );
   }
 }
