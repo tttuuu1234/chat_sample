@@ -46,11 +46,6 @@ class BasePage extends ConsumerWidget {
           notifier.setCurrentIndex(index);
           notifier.setCurrentItem(selectedItem);
         },
-        type: BottomNavigationBarType.fixed,
-        selectedFontSize: 12,
-        unselectedFontSize: 12,
-        selectedItemColor: Colors.greenAccent,
-        unselectedItemColor: Colors.grey,
         items: BottomNavBarItem.values.map((e) {
           return BottomNavigationBarItem(
             icon: Icon(e.iconData),

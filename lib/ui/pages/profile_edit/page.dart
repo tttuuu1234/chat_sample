@@ -18,7 +18,7 @@ class ProfileEditPage extends ConsumerWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: const Text(
+          child: Text(
             '保存',
             style: TextStyle(color: AppColor.white),
           ),

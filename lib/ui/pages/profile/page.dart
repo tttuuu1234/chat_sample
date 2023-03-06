@@ -50,7 +50,7 @@ class ProfilePage extends ConsumerWidget {
                           );
                         },
                         child: Row(
-                          children: const [
+                          children: [
                             Icon(Icons.edit),
                             Text('編集する'),
                           ],
