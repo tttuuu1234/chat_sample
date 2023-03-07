@@ -4,6 +4,9 @@ import 'package:chat_sample/ui/enum/gender.dart';
 import 'package:chat_sample/ui/styles/color.dart';
 import 'package:chat_sample/ui/styles/margin.dart';
 import 'package:chat_sample/ui/styles/padding.dart';
+import 'package:chat_sample/ui/util/age.dart';
+import 'package:chat_sample/ui/util/modal.dart';
+import 'package:chat_sample/ui/util/prefecture.dart';
 import 'package:dotted_border/dotted_border.dart';
 
 import '../../../importer.dart';
@@ -15,6 +18,17 @@ class ProfileEditPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final selectableAgeList = ref.watch(selectableAgeListProvider);
+    final selectablePrefectureList =
+        ref.watch(selectablePrefectureListProvider);
+    final ageList =
+        selectableAgeList.map((e) => Center(child: Text(e.label))).toList();
+    final prefectureList = selectablePrefectureList
+        .map((e) => Center(
+              child: Text(e.label),
+            ))
+        .toList();
+
     return BasicLayout(
       title: 'プロフィール編集',
       actions: [
@@ -75,13 +89,50 @@ class ProfileEditPage extends ConsumerWidget {
                 selectedGender: Gender.noSelect,
               ),
             ),
-            const InputFiledBaseLayout(
+            InputFiledBaseLayout(
               label: '年齢',
-              widget: AgeSelectField(
+              widget: SelectModalField(
                 hintText: '年齢を追加',
+                onTap: () async {
+                  await ModalUtil.showSelectableModal(
+                    context,
+                    ageList,
+                    (index) {
+                      print(index);
+                      final value = selectableAgeList
+                          .firstWhere((element) => element.index == index)
+                          .value;
+                      print(value);
+                    },
+                    () {
+                      Navigator.pop(context);
+                    },
+                  );
+                },
               ),
             ),
-            InputFiledBaseLayout(label: '場所', widget: TextFormField()),
+            InputFiledBaseLayout(
+              label: '場所',
+              widget: SelectModalField(
+                hintText: '場所を追加',
+                onTap: () async {
+                  await ModalUtil.showSelectableModal(
+                    context,
+                    prefectureList,
+                    (index) {
+                      print(index);
+                      final value = selectablePrefectureList
+                          .firstWhere((element) => element.index == index)
+                          .label;
+                      print(value);
+                    },
+                    () {
+                      Navigator.pop(context);
+                    },
+                  );
+                },
+              ),
+            ),
             InputFiledBaseLayout(label: '自己紹介', widget: TextFormField()),
             AppVerticalMargin.small,
           ],
