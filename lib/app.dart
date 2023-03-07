@@ -27,6 +27,7 @@ class App extends ConsumerWidget {
             // bodyMedium: TextStyle(fontSize: AppSize.small),
             // bodyLarge: TextStyle(fontSize: AppSize.miduam),
             ),
+        hintColor: AppColor.grey,
         buttonTheme: const ButtonThemeData().copyWith(
           splashColor: Colors.amber,
           highlightColor: Colors.black,

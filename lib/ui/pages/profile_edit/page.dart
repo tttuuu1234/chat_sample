@@ -1,13 +1,14 @@
+import 'package:chat_sample/ui/components/age_select_filed/widget.dart';
 import 'package:chat_sample/ui/components/basic_layout/widget.dart';
 import 'package:chat_sample/ui/enum/gender.dart';
 import 'package:chat_sample/ui/styles/color.dart';
 import 'package:chat_sample/ui/styles/margin.dart';
 import 'package:chat_sample/ui/styles/padding.dart';
-import 'package:chat_sample/ui/validator/validator.dart';
 import 'package:dotted_border/dotted_border.dart';
 
 import '../../../importer.dart';
 import '../../components/gender_select_filed/widget.dart';
+import '../../components/validate_input_field/widget.dart';
 
 class ProfileEditPage extends ConsumerWidget {
   const ProfileEditPage({super.key});
@@ -74,7 +75,12 @@ class ProfileEditPage extends ConsumerWidget {
                 selectedGender: Gender.noSelect,
               ),
             ),
-            InputFiledBaseLayout(label: '年齢', widget: TextFormField()),
+            const InputFiledBaseLayout(
+              label: '年齢',
+              widget: AgeSelectField(
+                hintText: '年齢を追加',
+              ),
+            ),
             InputFiledBaseLayout(label: '場所', widget: TextFormField()),
             InputFiledBaseLayout(label: '自己紹介', widget: TextFormField()),
             AppVerticalMargin.small,
@@ -113,49 +119,6 @@ class InputFiledBaseLayout extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class ValidateInputFiled extends StatelessWidget {
-  const ValidateInputFiled({
-    Key? key,
-    required this.controller,
-    this.validateRules,
-  }) : super(key: key);
-
-  final TextEditingController controller;
-  final List<Validator>? validateRules;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      cursorColor: AppColor.green,
-      decoration: const InputDecoration(
-        enabledBorder: InputBorder.none,
-        focusedBorder: InputBorder.none,
-        errorBorder: InputBorder.none,
-        focusedErrorBorder: InputBorder.none,
-        disabledBorder: InputBorder.none,
-      ),
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      validator: (value) {
-        String? errorMessage;
-        final rules = validateRules;
-        if (rules == null) {
-          return null;
-        }
-
-        for (final rule in rules) {
-          if (rule.validate(value)) {
-            errorMessage = rule.getMessage();
-            break;
-          }
-        }
-
-        return errorMessage;
-      },
     );
   }
 }
