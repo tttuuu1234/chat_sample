@@ -21,6 +21,7 @@ class MultiInputFiled extends StatelessWidget {
       controller: controller,
       cursorColor: AppColor.green,
       maxLines: 8,
+      maxLength: 255,
       decoration: InputDecoration(
         contentPadding: contentPadding ?? AppPadding.zero,
         hintText: hintText,
