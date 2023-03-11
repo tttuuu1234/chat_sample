@@ -1,12 +1,11 @@
+import 'package:chat_sample/providers/master.dart';
 import 'package:chat_sample/ui/components/age_select_filed/widget.dart';
 import 'package:chat_sample/ui/components/basic_layout/widget.dart';
 import 'package:chat_sample/ui/enum/gender.dart';
 import 'package:chat_sample/ui/styles/color.dart';
 import 'package:chat_sample/ui/styles/margin.dart';
 import 'package:chat_sample/ui/styles/padding.dart';
-import 'package:chat_sample/ui/util/age.dart';
 import 'package:chat_sample/ui/util/modal.dart';
-import 'package:chat_sample/ui/util/prefecture.dart';
 import 'package:dotted_border/dotted_border.dart';
 
 import '../../../importer.dart';
@@ -18,9 +17,10 @@ class ProfileEditPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectableAgeList = ref.watch(selectableAgeListProvider);
-    final selectablePrefectureList =
-        ref.watch(selectablePrefectureListProvider);
+    final selectableAgeList = ref.watch(selectabeAgeListProvider);
+    final selectablePrefectureList = ref.watch(
+      selectablePrefectureListProvider,
+    );
     final ageList =
         selectableAgeList.map((e) => Center(child: Text(e.label))).toList();
     final prefectureList = selectablePrefectureList

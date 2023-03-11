@@ -1,8 +1,7 @@
-import '../../importer.dart';
+class PrefectureMaster {
+  const PrefectureMaster._();
 
-final selectablePrefectureListProvider = Provider<List<Prefecture>>((ref) {
-  var list = [Prefecture(label: '未設定', value: 0, index: 0)];
-  const prefectureList = [
+  static const _list = [
     '北海道',
     '青森県',
     '岩手県',
@@ -52,15 +51,28 @@ final selectablePrefectureListProvider = Provider<List<Prefecture>>((ref) {
     '沖縄県',
   ];
 
-  for (var i = 0; i < prefectureList.length; i++) {
-    list.add(Prefecture(label: prefectureList[i], value: i + 1, index: i + 1));
-  }
+  static List<Prefecture> getSelectableList() {
+    var list = [Prefecture(label: '未設定', value: 0, index: 0)];
+    for (var i = 0; i < _list.length; i++) {
+      list.add(
+        Prefecture(
+          label: _list[i],
+          value: i + 1,
+          index: i + 1,
+        ),
+      );
+    }
 
-  return list;
-});
+    return list;
+  }
+}
 
 class Prefecture {
-  Prefecture({required this.label, required this.value, required this.index});
+  Prefecture({
+    required this.label,
+    required this.value,
+    required this.index,
+  });
 
   final String label;
   final int value;
