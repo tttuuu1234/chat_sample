@@ -1,6 +1,5 @@
 import 'package:chat_sample/providers/master.dart';
-import 'package:chat_sample/ui/components/age_select_filed/widget.dart';
-import 'package:chat_sample/ui/components/basic_layout/widget.dart';
+import 'package:chat_sample/ui/components/multi_input_field.dart';
 import 'package:chat_sample/ui/enum/gender.dart';
 import 'package:chat_sample/ui/styles/color.dart';
 import 'package:chat_sample/ui/styles/margin.dart';
@@ -9,8 +8,10 @@ import 'package:chat_sample/ui/util/modal.dart';
 import 'package:dotted_border/dotted_border.dart';
 
 import '../../../importer.dart';
-import '../../components/gender_select_filed/widget.dart';
-import '../../components/validate_input_field/widget.dart';
+import '../../components/basic_layout.dart';
+import '../../components/gender_select_field.dart';
+import '../../components/show_modal_filed.dart';
+import '../../components/validate_input_filed.dart';
 
 class ProfileEditPage extends ConsumerWidget {
   const ProfileEditPage({super.key});
@@ -83,7 +84,7 @@ class ProfileEditPage extends ConsumerWidget {
                 controller: TextEditingController(),
               ),
             ),
-            const InputFiledBaseLayout(
+            const GenderSelectFiledBaseLayout(
               label: '性別',
               widget: GenderSelectFiled(
                 selectedGender: Gender.noSelect,
@@ -91,7 +92,7 @@ class ProfileEditPage extends ConsumerWidget {
             ),
             InputFiledBaseLayout(
               label: '年齢',
-              widget: SelectModalField(
+              widget: ShowModalField(
                 hintText: '年齢を追加',
                 onTap: () async {
                   await ModalUtil.showSelectableModal(
@@ -113,7 +114,7 @@ class ProfileEditPage extends ConsumerWidget {
             ),
             InputFiledBaseLayout(
               label: '場所',
-              widget: SelectModalField(
+              widget: ShowModalField(
                 hintText: '場所を追加',
                 onTap: () async {
                   await ModalUtil.showSelectableModal(
@@ -133,7 +134,12 @@ class ProfileEditPage extends ConsumerWidget {
                 },
               ),
             ),
-            InputFiledBaseLayout(label: '自己紹介', widget: TextFormField()),
+            MultiInputFiledBaseLayout(
+              label: '自己紹介',
+              widget: MultiInputFiled(
+                controller: TextEditingController(),
+              ),
+            ),
             AppVerticalMargin.small,
           ],
         ),
@@ -156,15 +162,75 @@ class InputFiledBaseLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Divider(),
+        const Divider(height: 1),
+        AppVerticalMargin.xSmall,
         Padding(
           padding: AppPadding.smallHorizontal,
           child: Row(
+            children: [
+              Expanded(child: Text(label)),
+              Expanded(flex: 3, child: widget)
+            ],
+          ),
+        ),
+        AppVerticalMargin.xSmall,
+      ],
+    );
+  }
+}
+
+class GenderSelectFiledBaseLayout extends StatelessWidget {
+  const GenderSelectFiledBaseLayout({
+    super.key,
+    required this.label,
+    required this.widget,
+  });
+
+  final String label;
+  final Widget widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const Divider(height: 1),
+        Padding(
+          padding: AppPadding.smallHorizontal,
+          child: Row(
+            children: [
+              Expanded(child: Text(label)),
+              Expanded(flex: 3, child: widget),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class MultiInputFiledBaseLayout extends StatelessWidget {
+  const MultiInputFiledBaseLayout({
+    super.key,
+    required this.label,
+    required this.widget,
+  });
+
+  final String label;
+  final Widget widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const Divider(height: 1),
+        AppVerticalMargin.xSmall,
+        Padding(
+          padding: AppPadding.smallHorizontal,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
-                child: Text(label),
-              ),
+              Expanded(child: Text(label)),
               Expanded(flex: 3, child: widget)
             ],
           ),

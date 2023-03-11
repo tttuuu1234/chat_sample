@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../enum/gender.dart';
-import '../../styles/color.dart';
+import '../enum/gender.dart';
+import '../styles/color.dart';
 
 class GenderSelectFiled extends StatelessWidget {
   const GenderSelectFiled({
@@ -16,9 +16,7 @@ class GenderSelectFiled extends StatelessWidget {
     return ToggleButtons(
       constraints: const BoxConstraints(
         minWidth: 70,
-        minHeight: 30,
         maxWidth: 80,
-        maxHeight: 30,
       ),
       borderRadius: BorderRadius.circular(16),
       color: AppColor.black,

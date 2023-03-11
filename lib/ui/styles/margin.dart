@@ -35,6 +35,15 @@ class AppMargin {
   static EdgeInsetsGeometry largeAll = EdgeInsets.all(AppSize.large);
   static EdgeInsetsGeometry xLargeAll = EdgeInsets.all(AppSize.xLarge);
 
+  // 上
+  static EdgeInsetsGeometry xSmallTop = EdgeInsets.only(
+    top: AppSize.xSmall,
+  );
+
+  static EdgeInsetsGeometry smallTop = EdgeInsets.only(
+    top: AppSize.small,
+  );
+
   // 下
   static EdgeInsetsGeometry xSmallBottom = EdgeInsets.only(
     bottom: AppSize.xSmall,

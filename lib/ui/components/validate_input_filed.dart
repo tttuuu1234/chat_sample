@@ -1,6 +1,8 @@
+import 'package:chat_sample/ui/styles/padding.dart';
+
 import '../../../importer.dart';
-import '../../styles/color.dart';
-import '../../validator/validator.dart';
+import '../styles/color.dart';
+import '../validator/validator.dart';
 
 class ValidateInputFiled extends StatelessWidget {
   const ValidateInputFiled({
@@ -9,6 +11,8 @@ class ValidateInputFiled extends StatelessWidget {
     this.hintText,
     this.showCursor,
     this.readOnly = false,
+    this.isDense = true,
+    this.contentPadding,
     this.validateRules,
     this.onTap,
   }) : super(key: key);
@@ -17,6 +21,8 @@ class ValidateInputFiled extends StatelessWidget {
   final String? hintText;
   final bool? showCursor;
   final bool readOnly;
+  final bool isDense;
+  final EdgeInsetsGeometry? contentPadding;
   final List<Validator>? validateRules;
   final VoidCallback? onTap;
 
@@ -26,6 +32,8 @@ class ValidateInputFiled extends StatelessWidget {
       controller: controller,
       cursorColor: AppColor.green,
       decoration: InputDecoration(
+        isDense: isDense,
+        contentPadding: contentPadding ?? AppPadding.zero,
         hintText: hintText,
         enabledBorder: InputBorder.none,
         focusedBorder: InputBorder.none,

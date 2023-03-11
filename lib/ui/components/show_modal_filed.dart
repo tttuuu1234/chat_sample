@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 
 import '../../../importer.dart';
-import '../validate_input_field/widget.dart';
+import 'validate_input_filed.dart';
 
-class SelectModalField extends StatelessWidget {
-  const SelectModalField({
+class ShowModalField extends StatelessWidget {
+  const ShowModalField({
     Key? key,
     this.hintText,
     this.onTap,

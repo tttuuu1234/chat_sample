@@ -6,6 +6,9 @@ import 'size.dart';
 class AppPadding {
   AppPadding._();
 
+  // 無し
+  static EdgeInsetsGeometry zero = EdgeInsets.zero;
+
   // 全体
   static EdgeInsetsGeometry xSmallAll = EdgeInsets.all(AppSize.xSmall);
   static EdgeInsetsGeometry smallAll = EdgeInsets.all(AppSize.small);
