@@ -1,8 +1,10 @@
+import 'package:chat_sample/generated/l10n.dart';
 import 'package:chat_sample/importer.dart';
 import 'package:chat_sample/ui/pages/root/page.dart';
 import 'package:chat_sample/ui/services/navigator.dart';
 import 'package:chat_sample/ui/styles/color.dart';
 import 'package:chat_sample/ui/styles/size.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class App extends ConsumerWidget {
   const App({super.key});
@@ -40,6 +42,13 @@ class App extends ConsumerWidget {
         scaffoldBackgroundColor: AppColor.white,
       ),
       home: const RootPage(),
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
     );
   }
 }
