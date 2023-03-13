@@ -2,7 +2,6 @@ import 'package:chat_sample/ui/extension/context.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../importer.dart';
-import '../styles/color.dart';
 
 class ModalUtil {
   ModalUtil._();

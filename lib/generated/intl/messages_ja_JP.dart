@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "callingRoomLabel": MessageLookupByLibrary.simpleMessage("通話中のルーム"),
         "homeTitle": MessageLookupByLibrary.simpleMessage("ホーム")
       };
 }

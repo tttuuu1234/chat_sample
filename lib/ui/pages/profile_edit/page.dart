@@ -1,9 +1,6 @@
 import 'package:chat_sample/providers/master.dart';
 import 'package:chat_sample/ui/components/multi_input_field.dart';
 import 'package:chat_sample/ui/enum/gender.dart';
-import 'package:chat_sample/ui/styles/color.dart';
-import 'package:chat_sample/ui/styles/margin.dart';
-import 'package:chat_sample/ui/styles/padding.dart';
 import 'package:chat_sample/ui/util/modal.dart';
 import 'package:dotted_border/dotted_border.dart';
 

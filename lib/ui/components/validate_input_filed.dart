@@ -1,7 +1,5 @@
-import 'package:chat_sample/ui/styles/padding.dart';
 
 import '../../../importer.dart';
-import '../styles/color.dart';
 import '../validator/validator.dart';
 
 class ValidateInputFiled extends StatelessWidget {

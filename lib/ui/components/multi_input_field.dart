@@ -1,7 +1,5 @@
-import 'package:chat_sample/ui/styles/padding.dart';
 
 import '../../../importer.dart';
-import '../styles/color.dart';
 
 class MultiInputFiled extends StatelessWidget {
   const MultiInputFiled({

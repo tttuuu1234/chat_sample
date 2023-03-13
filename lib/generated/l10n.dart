@@ -59,6 +59,16 @@ class S {
       args: [],
     );
   }
+
+  /// `calling room`
+  String get callingRoomLabel {
+    return Intl.message(
+      'calling room',
+      name: 'callingRoomLabel',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

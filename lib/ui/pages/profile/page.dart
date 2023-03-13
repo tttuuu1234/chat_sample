@@ -1,7 +1,4 @@
 import 'package:chat_sample/ui/services/navigator.dart';
-import 'package:chat_sample/ui/styles/color.dart';
-import 'package:chat_sample/ui/styles/margin.dart';
-import 'package:chat_sample/ui/styles/padding.dart';
 
 import '../../../importer.dart';
 import '../profile_edit/page.dart';
@@ -25,7 +22,7 @@ class ProfilePage extends ConsumerWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Placeholder(),
+            const Placeholder(),
             AppVerticalMargin.small,
             Padding(
               padding: AppPadding.smallHorizontal,
@@ -50,7 +47,7 @@ class ProfilePage extends ConsumerWidget {
                           );
                         },
                         child: Row(
-                          children: [
+                          children: const [
                             Icon(Icons.edit),
                             Text('編集する'),
                           ],

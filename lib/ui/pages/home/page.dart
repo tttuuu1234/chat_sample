@@ -1,10 +1,9 @@
-import 'package:chat_sample/generated/l10n.dart';
 import 'package:chat_sample/ui/components/basic_layout.dart';
-import 'package:chat_sample/ui/styles/color.dart';
-import 'package:chat_sample/ui/styles/margin.dart';
-import 'package:chat_sample/ui/styles/padding.dart';
+import 'package:chat_sample/ui/components/line.dart';
 
 import '../../../importer.dart';
+import '../../components/contents_list_area.dart';
+import '../../components/recruitment_row_list_area.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -56,107 +55,40 @@ class HomePage extends ConsumerWidget {
         ),
         body: TabBarView(
           children: [
-            Scrollbar(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: AppPadding.smallVertical,
-                  child: Column(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.only(left: 16),
-                            child: const Text('通話中のルーム'),
-                          ),
-                          AppVerticalMargin.small,
-                          SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              children: List.generate(
-                                20,
-                                (index) => Container(
-                                  margin: const EdgeInsets.only(left: 16),
-                                  child: const CircleAvatar(
-                                    child: Icon(Icons.person),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          AppVerticalMargin.small,
-                        ],
-                      ),
-                      Container(
-                        width: double.infinity,
-                        height: 10,
-                        color: AppColor.grey,
-                      ),
-                      Column(
-                        children: List.generate(
-                          20,
-                          (index) => ListTile(
-                            title: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
-                                    Text(
-                                      '翼',
-                                      style: TextStyle(fontSize: 12),
-                                    ),
-                                    Text(
-                                      '東京都・26歳',
-                                      style: TextStyle(fontSize: 12),
-                                    ),
-                                  ],
-                                ),
-                                const Text(
-                                  '6秒前',
-                                  style: TextStyle(fontSize: 12),
-                                ),
-                              ],
-                            ),
-                            leading: const CircleAvatar(
-                              child: Icon(Icons.person),
-                            ),
-                            subtitle: Column(
-                              children: [
-                                Container(
-                                  height: 100,
-                                  margin: const EdgeInsets.only(top: 16),
-                                  color: Colors.blueAccent,
-                                ),
-                                AppVerticalMargin.small,
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(Icons.favorite),
-                                        AppHorizontalMargin.xLarge,
-                                        Icon(Icons.reply_rounded)
-                                      ],
-                                    ),
-                                    Icon(Icons.more_vert_sharp),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+            HomeTabBarView(
+              recruitmentLabel: S.of(context).callingRoomLabel,
             ),
             Column(
               children: const [],
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class HomeTabBarView extends StatelessWidget {
+  const HomeTabBarView({
+    super.key,
+    required this.recruitmentLabel,
+  });
+
+  final String recruitmentLabel;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scrollbar(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: AppPadding.smallVertical,
+          child: Column(
+            children: [
+              RecruitmentRowListArea(label: recruitmentLabel),
+              const Line(),
+              const ContentsListArea(),
+            ],
+          ),
         ),
       ),
     );
