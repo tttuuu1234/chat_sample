@@ -6,13 +6,17 @@ class BasicLayout extends StatelessWidget {
     required this.title,
     required this.body,
     this.isShowAppBar = true,
+    this.leading,
     this.actions,
+    this.bottom,
   }) : super(key: key);
 
   final String title;
   final List<Widget>? actions;
   final Widget body;
   final bool isShowAppBar;
+  final Widget? leading;
+  final PreferredSizeWidget? bottom;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +25,8 @@ class BasicLayout extends StatelessWidget {
           ? AppBar(
               title: Text(title),
               actions: actions,
+              leading: leading,
+              bottom: bottom,
             )
           : null,
       body: SafeArea(child: body),
