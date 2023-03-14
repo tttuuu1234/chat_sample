@@ -1,4 +1,6 @@
 {
   "homeTitle": "ホーム",
-  "callingRoomLabel": "通話中のルーム"
+  "callingRoomLabel": "通話中のルーム",
+  "userSearchTitle": "探す",
+  "talkRecruitmentLabel": "チャット相手募集中"
 }

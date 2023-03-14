@@ -69,6 +69,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Search`
+  String get userSearchTitle {
+    return Intl.message(
+      'Search',
+      name: 'userSearchTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `talk recruitment`
+  String get talkRecruitmentLabel {
+    return Intl.message(
+      'talk recruitment',
+      name: 'talkRecruitmentLabel',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -1,4 +1,6 @@
 {
   "homeTitle": "Home",
-  "callingRoomLabel": "calling room"
+  "callingRoomLabel": "calling room",
+  "userSearchTitle": "Search",
+  "talkRecruitmentLabel": "talk recruitment"
 }
